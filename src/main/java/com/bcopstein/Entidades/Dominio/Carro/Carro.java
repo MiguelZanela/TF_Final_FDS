@@ -1,20 +1,31 @@
 package com.bcopstein.Entidades.Dominio.Carro;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Carro {
+    @Id
     private String placa;
     private String marca;
     private String modelo;
+    private double valordiaria;
     private boolean arcondicionado;
     private boolean direcao;
     private boolean cambioautomatico;
+    private boolean carrodisponivel;
 
-    public Carro(String placa, String marca, String modelo, boolean arcondicionado, boolean direcao, boolean cambioautomatico) {
+    protected Carro(){}
+
+    public Carro(String placa, String marca, String modelo, double valordiaria, boolean arcondicionado, boolean direcao, boolean cambioautomatico, boolean carrodisponivel) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
+        this.valordiaria = valordiaria;
         this.arcondicionado = arcondicionado;
         this.direcao = direcao;
         this.cambioautomatico = cambioautomatico;
+        this.carrodisponivel = carrodisponivel;
     }
 
     public String getPlaca() {
@@ -39,6 +50,18 @@ public class Carro {
 
     public boolean isCambioautomatico() {
         return cambioautomatico;
+    }
+
+    public double getValordiaria() {
+        return valordiaria;
+    }
+
+    public boolean getStatusCarro() {
+        return carrodisponivel;
+    }
+
+    public void setStatusCarro(boolean carrodisponivel) {
+        this.carrodisponivel = carrodisponivel;
     }
 
     @Override

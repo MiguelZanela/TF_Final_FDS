@@ -1,7 +1,10 @@
-package com.bcopstein.Interface;
+package com.bcopstein.Entidades.Dominio.Data;
 
 import java.util.Calendar;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DataLocal {
     private int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     private int mes = Calendar.getInstance().get(Calendar.MONTH) + 1;

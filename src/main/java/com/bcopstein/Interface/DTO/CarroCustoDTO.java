@@ -1,6 +1,6 @@
 package com.bcopstein.Interface.DTO;
 
-import com.bcopstein.Interface.DataLocal;
+import com.bcopstein.Entidades.Dominio.Data.DataLocal;
 
 public class CarroCustoDTO {
     private DataLocal inicioLocacao;
@@ -16,9 +16,8 @@ public class CarroCustoDTO {
     private double desconto;
     private double totalPagar;
 
-    public CarroCustoDTO(DataLocal inicioLocacao, DataLocal fimLocacao, String placa, String marca, String modelo,
-            boolean arcondicionado, boolean direcao, boolean cambio, double custoLocacao, double seguro,
-            double desconto, double totalPagar) {
+    public CarroCustoDTO(DataLocal inicioLocacao, DataLocal fimLocacao, String placa, String marca, String modelo, boolean arcondicionado, boolean direcao, 
+                            boolean cambio, double custoLocacao, double seguro, double desconto, double totalPagar) {
         this.inicioLocacao = inicioLocacao;
         this.fimLocacao = fimLocacao;
         this.placa = placa;

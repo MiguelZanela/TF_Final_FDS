@@ -1,5 +1,7 @@
 package com.bcopstein.Entidades.Repositorio;
 
-public interface Alugueis {
-    
+import com.bcopstein.Entidades.Dominio.Aluguel.Aluguel;
+
+public interface Alugueis extends Repositorio<Aluguel, Long> {
+
 }

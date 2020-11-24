@@ -1,6 +1,6 @@
 package com.bcopstein.Interface.DTO;
 
-import com.bcopstein.Interface.DataLocal;
+import com.bcopstein.Entidades.Dominio.Data.DataLocal;
 
 public class FiltroDTO {
     private DataLocal inicioLocacao = new DataLocal();
@@ -9,8 +9,7 @@ public class FiltroDTO {
     private boolean direcao = false;
     private boolean cambio = false;
 
-    public FiltroDTO(DataLocal inicioLocacao, DataLocal fimLocacao, boolean arcondicionado, boolean direcao,
-            boolean cambio) {
+    public FiltroDTO(DataLocal inicioLocacao, DataLocal fimLocacao, boolean arcondicionado, boolean direcao, boolean cambio) {
         this.inicioLocacao = inicioLocacao;
         this.fimLocacao = fimLocacao;
         this.arcondicionado = arcondicionado;
