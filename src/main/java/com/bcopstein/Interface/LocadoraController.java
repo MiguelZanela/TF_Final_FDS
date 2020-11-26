@@ -37,10 +37,8 @@ public class LocadoraController {
   @GetMapping("/carrosDisponiveis")
   @CrossOrigin(origins = "*")
   public List<CarroCustoDTO> carrosDisponiveis(FiltroDTO filtro) {
-    // Está selecionando pelos equipamentos e se esta disponivel ou nao
-    // Não está verificando se o carro está livre naquelas datas
-    if(ctrlAluguel.validaDatas(filtro.getInicioLocacao(), filtro.getFimLocacao())){
-      List<Carro> disponiveis = ctrlAluguel.listaCarros().stream()
+    if(ctrlAluguel.validaDatas(filtro.getInicioLocacao(), filtro.getFimLocacao())){//verifica se a data infomrada é valida
+      List<Carro> disponiveis = ctrlAluguel.listaCarros().stream()//filtra pela disbonibilidade e opcionais
       .filter(c->c.getStatusCarro() == true)
       .filter(c->c.isArcondicionado() == filtro.isArcondicionado())
       .filter(c->c.isDirecao() == filtro.isDirecao())
@@ -64,7 +62,8 @@ public class LocadoraController {
       });
       return informacoes;
     }
-    return null;
+    List<CarroCustoDTO> informacoes = new ArrayList<>();
+    return informacoes;
   }
 
   @PostMapping("/confirmaLocacao")
