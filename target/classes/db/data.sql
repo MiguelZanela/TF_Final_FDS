@@ -11,3 +11,10 @@ INSERT INTO carro (placa,marca,modelo,valordiaria,arcondicionado,direcao,cambioa
 INSERT INTO carro (placa,marca,modelo,valordiaria,arcondicionado,direcao,cambioautomatico,carrodisponivel) VALUES ('ABC141', 'VOLKSVAGEM', 'FUSCA', 25.0, FALSE, FALSE, FALSE, TRUE);
 INSERT INTO carro (placa,marca,modelo,valordiaria,arcondicionado,direcao,cambioautomatico,carrodisponivel) VALUES ('ABC142', 'VOLKSVAGEM', 'SAVEIRO', 75.0, TRUE, FALSE, TRUE, TRUE);
 
+--regra 1 = DiasAlugados
+INSERT INTO config_regra_desconto(nrodesc,regra) VALUES (1, 15);
+
+--regra 1 = plus
+--regra 2 = premium
+--regra 3 = promocao
+INSERT INTO config_regra_seguro(nroseg,regra) VALUES (1, 2);

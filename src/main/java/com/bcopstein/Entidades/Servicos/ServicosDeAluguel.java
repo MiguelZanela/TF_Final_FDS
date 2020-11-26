@@ -1,11 +1,7 @@
 package com.bcopstein.Entidades.Servicos;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 import com.bcopstein.Entidades.Desconto.FactoryDesconto;
 import com.bcopstein.Entidades.Dominio.Carro.Carro;
-import com.bcopstein.Entidades.Dominio.Data.DataLocal;
 import com.bcopstein.Entidades.Seguro.FactorySeguro;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +17,8 @@ public class ServicosDeAluguel {
         this.factoryDesconto = factoryDesconto;
         this.factorySeguro = factorySeguro;
     } 
-    
-    public long getDiasLocacao(DataLocal inicioLocacao, DataLocal fimLocacao){
-        long dias = 0;
-        String anoIni = inicioLocacao.getAno()+"-";
-        String mesIni = inicioLocacao.getMes()+"-";
-        String diaIni = inicioLocacao.getDia()+"";
-        String anoFim = fimLocacao.getAno()+"-";
-        String mesFim = fimLocacao.getMes()+"-";
-        String diaFim = fimLocacao.getDia()+"";
-        LocalDate iniLoc = LocalDate.parse(anoIni+mesIni+diaIni);
-        LocalDate fimLoc = LocalDate.parse(anoFim+mesFim+diaFim);
-        dias = ChronoUnit.DAYS.between(iniLoc, fimLoc);
-        return dias;
-    }
 
-    public Integer calculaSubtotal(Carro carro, Long diasLocacao) {
+    public Integer calculaTotalDiarias(Carro carro, Long diasLocacao) {
         return (int) (carro.getValordiaria()*diasLocacao);
     }
 
@@ -48,16 +30,17 @@ public class ServicosDeAluguel {
         return (int) factorySeguro.getRegraSeguro().calcular(carro, diasLocacao);
     }
 
-    public Integer calculaPrecoFinal(Carro carro, Long diasLocacao) {
-        return calculaSubtotal(carro, diasLocacao) + calculaSeguro(carro, diasLocacao) - calculaDesconto(carro, diasLocacao);
+    public Integer calculaValorFinal(Carro carro, Long diasLocacao) {
+        return calculaTotalDiarias(carro, diasLocacao) + calculaSeguro(carro, diasLocacao) - calculaDesconto(carro, diasLocacao);
     }
 
     public Integer[] todosValores(Carro carro, Long diasLocacao) {
         Integer[] valores = new Integer[3];
-        valores[0] = calculaSubtotal(carro, diasLocacao);
-        valores[1] = calculaDesconto(carro, diasLocacao);
-        valores[2] = calculaSeguro(carro, diasLocacao);
-        valores[3] = calculaPrecoFinal(carro, diasLocacao);
+        valores[0] = calculaTotalDiarias(carro, diasLocacao);
+        valores[1] = calculaSeguro(carro, diasLocacao);
+        valores[2] = calculaDesconto(carro, diasLocacao);
+        valores[3] = calculaValorFinal(carro, diasLocacao);
         return valores;
     }
+        
 }

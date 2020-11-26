@@ -4,7 +4,9 @@ public class SistAlugueisException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
     public enum Causa {
-        ALUGUEL_INEXISTENTE
+        ALUGUEL_INEXISTENTE,
+        NRODESC_DUPLICADO,
+        NROSEG_DUPLICADO
     };
     private Causa causa;
 

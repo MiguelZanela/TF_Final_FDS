@@ -1,25 +1,31 @@
 package com.bcopstein.Entidades.Dominio.Aluguel;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.bcopstein.Entidades.Dominio.Data.DataLocal;
 
 public class Aluguel {
-    private int nroCarro = 1;
-    private long codigo;
-    private List<CarroAlugado> carros;
-    private double subtotal;
+    private Long codigo;
+    private CarroAlugado carro;
+    private Long totalDiasAlugado;
+    private double totalDiarias;
     private double desconto;
     private double seguro;
     private double valorFinal;
+    private DataLocal inicioLocacao;
+    private DataLocal fimLocacao;
     private boolean fechado;
+    private boolean carroDevolvido;
 
-    public Aluguel(){
-        this.codigo = -1;
-        this.carros = new LinkedList<>();
-        this.subtotal = 0.0;
+    protected Aluguel(){}
+
+    public Aluguel(boolean fechado){
+        this.codigo = -1L;
+        this.carro = null;
+        this.totalDiarias = 0.0;
         this.desconto = 0.0;
         this.valorFinal = 0.0;
-        this.fechado = false;
+        this.totalDiasAlugado = 0L;
+        this.fechado = fechado;
+        this.carroDevolvido = false;
     }
 
     public long getCodigo(){
@@ -30,8 +36,8 @@ public class Aluguel {
         this.codigo = codigo;
     }
 
-    public double getSubtotal() {
-        return subtotal;
+    public double getTotalDiarias() {
+        return totalDiarias;
     }
     
     public double getdesconto() {
@@ -45,33 +51,52 @@ public class Aluguel {
     public double getValorFinal() {
         return valorFinal;
     }
+
+    public Long getTotalDiasAlugado() {
+        return totalDiasAlugado;
+    }
     
     public boolean isFechado() {
         return fechado;
     }
 
-    public boolean insereCarro(String placa, double valorDiaria) {
-        if (!fechado && carros.size() <1) {
-          carros.add(new CarroAlugado(nroCarro, placa, valorDiaria));
-          nroCarro++;
-          return true;
+    public boolean isCarroDevolvido(){
+        return carroDevolvido;
+    }    
+
+    public void carroDevolvido(Boolean carroDevolvido){
+        this.carroDevolvido = carroDevolvido;
+    }
+
+    public DataLocal getDataInicioLocacao() {
+        return inicioLocacao;
+    }
+
+    public DataLocal getDataFimLocacao() {
+        return fimLocacao;
+    }
+
+    public CarroAlugado getCarroAlugado() {
+        return carro;
+    }
+
+    public boolean insereCarro(CarroAlugado carroAlugado) {
+        if (!fechado) {
+            this.carro = carroAlugado;
+            return true;
         } else {
-          return false;
+            return false;
         }
     }
 
-    public boolean addCarros(List<CarroAlugado> Carros) {
-        if (!fechado && carros.size() <1) {
-          carros.addAll(Carros);
-        }
-        return false;
-    }
-
-    public void fechaAluguel(double subtotal, double desconto, double seguro, double valorFinal) {
+    public void fechaAluguel(double totalDiarias, double desconto, double seguro, double valorFinal, DataLocal inicoLocacao, DataLocal fimLocacao, Long totalDiasAlugado) {
         fechado = true;
-        this.subtotal = subtotal;
+        this.totalDiarias = totalDiarias;
         this.desconto = desconto;
         this.seguro = seguro;
         this.valorFinal = valorFinal;
+        this.inicioLocacao = inicoLocacao;
+        this.fimLocacao = fimLocacao;
+        this.totalDiasAlugado = totalDiasAlugado;
     }
 }

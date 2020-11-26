@@ -2,11 +2,11 @@ package com.bcopstein.Entidades.Seguro;
 
 import com.bcopstein.Entidades.Dominio.Carro.Carro;
 
-public class SeguroBasico implements RegraSeguro {
+public class SeguroPromocao implements RegraSeguro {
 
     @Override
     public double calcular(Carro carro, Long diasLocacao) {
-        double aux = carro.getValordiaria() / 3;
+        double aux = carro.getValordiaria() / 5;
         return aux*diasLocacao;
     }
 

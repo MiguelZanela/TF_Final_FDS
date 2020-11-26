@@ -10,6 +10,7 @@ import com.bcopstein.Entidades.Dominio.Aluguel.Aluguel;
 import com.bcopstein.Entidades.Dominio.Exceptions.SistAlugueisException;
 import com.bcopstein.Entidades.Repositorio.Alugueis;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,25 +18,25 @@ public class Alugueis_IMPL implements Alugueis {
     private static Long nroAluguel = 1L;
     private List<Aluguel> alugueis;
 
-    public Alugueis_IMPL(){
-        alugueis = new LinkedList<>();
+    @Autowired
+    public Alugueis_IMPL() {
+        this.alugueis = new LinkedList<>();
+        carrega();
     }
 
     @Override
     public void carrega() {
         // nao é usado
-
     }
 
     @Override
     public void persiste() {
-        // TODO Auto-generated method stub
-
+        // nao é usado
     }
 
     @Override
     public void cadastra(Aluguel aluguel) {
-        if (aluguel.getCodigo() == -1) {
+        if (aluguel.getCodigo() == -1L) {
             aluguel.setCodigo(nroAluguel);
             nroAluguel++;
         }
@@ -76,8 +77,8 @@ public class Alugueis_IMPL implements Alugueis {
     }
 
     @Override
-    public void atualiza(Aluguel elemento) {
-        // TODO Auto-generated method stub
+    public void atualiza(Aluguel aluguel) {
+        // não esta sendo usada        
     }
 
     @Override
