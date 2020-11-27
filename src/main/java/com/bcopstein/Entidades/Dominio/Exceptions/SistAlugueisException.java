@@ -1,3 +1,11 @@
+/*
+* Classe que mantem as exceptions da aplicacao
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Entidades.Dominio.Exceptions;
 
 public class SistAlugueisException extends IllegalArgumentException {

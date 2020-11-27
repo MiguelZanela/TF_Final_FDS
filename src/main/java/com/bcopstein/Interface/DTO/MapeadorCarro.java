@@ -1,3 +1,12 @@
+/*
+* Classe para tranformar informaçoes do front para o back
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
+
 package com.bcopstein.Interface.DTO;
 
 import com.bcopstein.Entidades.Dominio.Aluguel.CarroAlugado;

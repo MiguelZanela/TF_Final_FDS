@@ -1,19 +1,26 @@
+/*
+* Classe que controla tudo envolvido a aluguel na aplicacao
+* registrar um novo aluguel, validar informacoes recebidas, ocupar e desocupar carros
+* bem como regristrar novo itemconfiguracao
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.CasosDeUso;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 
-import com.bcopstein.CasosDeUso.FactorySeguroDesconto.ConfigRegraDesconto;
-import com.bcopstein.CasosDeUso.FactorySeguroDesconto.ConfigRegraSeguro;
 import com.bcopstein.Entidades.Dominio.Aluguel.Aluguel;
 import com.bcopstein.Entidades.Dominio.Aluguel.CarroAlugado;
 import com.bcopstein.Entidades.Dominio.Carro.Carro;
 import com.bcopstein.Entidades.Dominio.Data.DataLocal;
 import com.bcopstein.Entidades.Repositorio.Alugueis;
 import com.bcopstein.Entidades.Repositorio.Carros;
-import com.bcopstein.Entidades.Repositorio.Descontos;
-import com.bcopstein.Entidades.Repositorio.Seguros;
+import com.bcopstein.Entidades.Repositorio.ItensConfiguracao;
 import com.bcopstein.Entidades.Servicos.ServicosDeAluguel;
 import com.bcopstein.Entidades.Servicos.ServicosDeCarros;
 
@@ -27,20 +34,18 @@ public class ControleDeAluguel {
     private ServicosDeAluguel srvAluguel;
     private ServicosDeCarros srvCarros;
     private DataLocal dataLocal;
-    private Descontos desconto;
-    private Seguros seguro;
+    private ItensConfiguracao itemConfig;
 
 
     @Autowired
     public ControleDeAluguel(Carros carros, ServicosDeAluguel srvAluguel, ServicosDeCarros srvCarros, Alugueis alugueis, DataLocal dataLocal, 
-                                Descontos desconto, Seguros seguro){
+                                ItensConfiguracao itemConfig){
         this.carros = carros;
         this.srvAluguel = srvAluguel;
         this.alugueis = alugueis;
         this.srvCarros = srvCarros;
         this.dataLocal = dataLocal;
-        this.desconto = desconto;
-        this.seguro = seguro;
+        this.itemConfig = itemConfig;
     }
 
     public Collection<Carro> listaCarros() {
@@ -59,20 +64,12 @@ public class ControleDeAluguel {
         return alugueis.recupera(chave);
     }
 
-    public Collection<ConfigRegraDesconto> listaRegraDesconto() {
-        return desconto.todos();
+    public Collection<ItemConfiguracao> listaConfiguracao() {
+        return itemConfig.todos();
     }
 
-    public ConfigRegraDesconto getDesconto(Integer chave) {
-        return desconto.recupera(chave);
-    }
-
-    public Collection<ConfigRegraSeguro> listaRegraSeguro() {
-        return seguro.todos();
-    }
-
-    public ConfigRegraSeguro getSeguro(Integer chave) {
-        return seguro.recupera(chave);
+    public ItemConfiguracao getDesconto(String chave) {
+        return itemConfig.recupera(chave);
     }
 
     //valida as datas recebidas do front
@@ -96,7 +93,12 @@ public class ControleDeAluguel {
         LocalDate iniLoc = LocalDate.parse(anoIni+mesIni+diaIni);
         LocalDate fimLoc = LocalDate.parse(anoFim+mesFim+diaFim);
         dias = ChronoUnit.DAYS.between(iniLoc, fimLoc);
-        return dias;
+        if(dias == 0){
+            return 1;
+        }
+        else{
+            return dias;
+        }
     }
 
     //devolve o valor total da diaria do carro * o o total de dias da locacao
@@ -154,18 +156,9 @@ public class ControleDeAluguel {
     }
 
     //recebe um id e um numero do tipo de seguro a ser aplicado e salva
-    public boolean cadastraSeguro(Integer nroseguro, Long regra){
-        ConfigRegraSeguro c1 = new ConfigRegraSeguro(nroseguro, regra);// cria a configuracao da regra do seguro
-        if(seguro.cadastra(c1)){// verifica se o cadastro do seguro foi efetuado
-            return true;
-        }
-        return false;
-    }
-
-    //recebe um id e um numero do tipo de desconto a ser aplicado e salva
-    public boolean cadastraDesconto(Integer nrodesc, Long regra){
-        ConfigRegraDesconto d1 = new ConfigRegraDesconto(nrodesc, regra);// cria a configuracao da regra de desconto
-        if(desconto.cadastra(d1)){// verifica se o cadastro do desconto foi efetuado
+    public boolean cadastraItemConfiguracao(String chave, Long regra){
+        ItemConfiguracao c1 = new ItemConfiguracao(chave, regra);// cria a configuracao da regra do seguro
+        if(itemConfig.cadastraRegra(c1)){// verifica se o cadastro do seguro foi efetuado
             return true;
         }
         return false;

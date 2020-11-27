@@ -1,3 +1,11 @@
+/*
+* Classe com os edpoints da locadora
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Interface;
 
 import java.util.ArrayList;
@@ -24,16 +32,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/locadora")
-public class LocadoraController {
+public class LocadoraEndPoints {
   private ControleDeAluguel ctrlAluguel;
   private MapeadorCarro mapeadorCarro;
 
   @Autowired
-  public LocadoraController(ControleDeAluguel ctrlAluguel, MapeadorCarro mapeadorCarro){
+  public LocadoraEndPoints(ControleDeAluguel ctrlAluguel, MapeadorCarro mapeadorCarro) {
     this.ctrlAluguel = ctrlAluguel;
     this.mapeadorCarro = mapeadorCarro;
   }
 
+  //filtra por data e opcionais
   @GetMapping("/carrosDisponiveis")
   @CrossOrigin(origins = "*")
   public List<CarroCustoDTO> carrosDisponiveis(FiltroDTO filtro) {
@@ -66,6 +75,7 @@ public class LocadoraController {
     return informacoes;
   }
 
+  //confirma o aluguel do carro escolhido
   @PostMapping("/confirmaLocacao")
   @CrossOrigin(origins = "*")
   public boolean confirmaLocacao(@RequestBody final CarroCustoDTO carroDTO) {
@@ -73,30 +83,21 @@ public class LocadoraController {
     return ctrlAluguel.confirmaAluguel(carroAlugado, carroDTO.getInicioLocacao(), carroDTO.getFimLocacao());
   }
 
+  //recebe uma placa e libera o carro para uma nova locacao
   @PostMapping("/devolveCarro")
   @CrossOrigin(origins = "*")
   public boolean confirmaLocacao(@RequestParam final String placa) {    
     return ctrlAluguel.devolveCarro(placa);
   }
 
-  @PostMapping("/mudaSeguro")
-  @CrossOrigin(origins = "*")
-  public boolean mudaSeguro(@RequestParam final Integer nroseg, Long regra) {    
-    return ctrlAluguel.cadastraSeguro(nroseg, regra);
-  }
-
-  @PostMapping("/mudaDesconto")
-  @CrossOrigin(origins = "*")
-  public boolean mudaDesconto(@RequestParam final Integer nrodesc, Long regra) {    
-    return ctrlAluguel.cadastraDesconto(nrodesc, regra);
-  }
-
+  //envia a lista de carros da locadora
   @PostMapping("/listaCarros")
   @CrossOrigin(origins = "*")
   public Collection<Carro> listaCarros() {    
     return ctrlAluguel.listaCarros();
   }
 
+  //envia a lista de alugueis da locadora
   @PostMapping("/listaAlugueis")
   @CrossOrigin(origins = "*")
   public Collection<Aluguel> listaAlugueis() {    

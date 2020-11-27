@@ -1,3 +1,11 @@
+/*
+* Classe contendo as informacoes necessarias para um aluguel
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Entidades.Dominio.Aluguel;
 
 import com.bcopstein.Entidades.Dominio.Data.DataLocal;

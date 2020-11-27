@@ -1,3 +1,11 @@
+/*
+* Classe para uso com o H2BD
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Interface.Persistencia.Carros;
 
 import java.util.Collection;

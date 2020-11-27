@@ -1,3 +1,11 @@
+/*
+* Classe com as informaçoes relacionadas ao custo do carro, apos aplicacao dos filtros
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Interface.DTO;
 
 import com.bcopstein.Entidades.Dominio.Data.DataLocal;

@@ -1,3 +1,11 @@
+/*
+* Classe contendo os calculos de um tipo de desconto
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Entidades.Desconto;
 
 import com.bcopstein.Entidades.Dominio.Carro.Carro;

@@ -1,3 +1,11 @@
+/*
+* Classe voltada para facilitar o uso de datas na aplicacao
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Entidades.Dominio.Data;
 
 import java.util.Calendar;

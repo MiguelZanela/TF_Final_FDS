@@ -8,8 +8,8 @@
 */
 package com.bcopstein.Entidades.Repositorio;
 
-import com.bcopstein.Entidades.Dominio.Aluguel.Aluguel;
+import com.bcopstein.CasosDeUso.ItemConfiguracao;
 
-public interface Alugueis extends Repositorio<Aluguel, Long> {
-
+public interface ItensConfiguracao extends Repositorio<ItemConfiguracao, String> {
+    boolean cadastraRegra(ItemConfiguracao config);
 }

@@ -1,3 +1,11 @@
+/*
+* Classe com as informaçoes do front em relacao a data e opcionais
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
 package com.bcopstein.Interface.DTO;
 
 import com.bcopstein.Entidades.Dominio.Data.DataLocal;

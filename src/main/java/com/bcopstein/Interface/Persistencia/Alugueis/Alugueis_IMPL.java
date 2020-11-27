@@ -1,3 +1,12 @@
+/*
+* Classe para mantaer os alugueis efetuados
+*
+* @Author Miguel Zanela, Ismael Vargas, Rafael Mattone
+*
+* Version 1 dez, 2020
+* 
+*/
+
 package com.bcopstein.Interface.Persistencia.Alugueis;
 
 import java.util.Collection;
