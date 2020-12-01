@@ -16,6 +16,6 @@ public class SeguroPadrao implements RegraSeguro {
     public double calcular(Carro carro, Long diasLocacao) {
         double aux = carro.getValordiaria() / 3;
         return aux * diasLocacao;
-    }    
+    }
 
 }
